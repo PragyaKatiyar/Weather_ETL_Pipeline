@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import time
+import boto3
 
 locations = [
     {"city": "Delhi", "lat": 28.6100, "lon": 77.2300},
@@ -65,10 +66,12 @@ def transform_data(raw_data , city):
     return records
 
 #Load Data
-def Load(data , filename='weather_multiple_cities.csv'):
+def Load(data , filename='weather_multiple_cities.csv' , bucket_name='weatherdata10'):
     df = pd.DataFrame(data)
     df.to_csv(filename , index=False)
-    print(f"Data saved to {filename}")
+    s3 = boto3.client('s3')
+    s3.upload_file(filename, bucket_name, 'weather.csv')
+    print(f"Data saved to s3")
 
 
 if __name__ == '__main__':
