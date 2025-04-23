@@ -1,0 +1,15 @@
+{
+  "fileLocations": [
+    {
+      "URIs": [
+        "s3://weatherdata10/weather.csv"
+      ]
+    }
+  ],
+  "globalUploadSettings": {
+    "format": "CSV",
+    "delimiter": ",",
+    "textqualifier": "\"",
+    "containsHeader": "true"
+  }
+}
